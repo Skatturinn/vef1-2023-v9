@@ -29,7 +29,9 @@ html {
 }
 
 img {
-	max-width: 100%;
+	width: 100%;
+	justify-self: center;
+	border-radius: 1em;
 }
 
 html {
@@ -44,18 +46,11 @@ button {
 }
 
 input {
-	/* grid-column-start: 2; */
 	grid-column-end: span 9;
-	/* padding: 0 var(--spacing) 0 0; */
 	border-radius: 1em 0 0 1em;
 	border: #0c1438 solid 1px;
 	padding: 0 0 0 1em;
 	color: #222b52
-}
-
-textarea:focus,
-input:focus {
-	outline: none;
 }
 
 button {
@@ -69,21 +64,8 @@ a {
 	font-family: var(--font-family-basic);
 }
 
-select,
-button,
-a {
-	cursor: pointer;
-}
-
-
-p {
-	grid-column: span 12;
-}
-
-
 input[type='number'] {
 	padding-inline-start: calc(var(--spacing) / 2);
-	/* grid-column: span 9; */
 }
 
 .search-button {
@@ -94,14 +76,6 @@ input[type='number'] {
 	color: var(--white);
 }
 
-.search-button:hover {
-	color: var(--red);
-	cursor: pointer;
-}
-
-.search-button:active {
-	color: var(--navy-light);
-}
 
 h1 {
 	font-size: 2rem;
@@ -129,11 +103,18 @@ main {
 	max-height: 100vh;
 }
 
-li {
-	list-style: none;
-	grid-column: span 12;
+body {
+	font-family: 'Space Mono', monospace;
+	height: 100vh;
+	display: flex;
 }
 
+.id {
+	display: none;
+}
+
+/* klassar */
+/* container */
 .grid-container {
 	display: grid;
 	grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -141,12 +122,7 @@ li {
 	align-self: center;
 }
 
-body {
-	font-family: 'Space Mono', monospace;
-	height: 100vh;
-	display: flex;
-}
-
+/* title */
 .nafn {
 	grid-column: span 12;
 	justify-self: center;
@@ -154,48 +130,18 @@ body {
 	font-family: var(--font-family-fine);
 }
 
-.results {
-	grid-column: span 12;
-}
-
 .heading {
 	text-align: center;
-	color: #0c1438;
+	color: var(--navy);
 	text-decoration: none;
 }
 
-.id {
-	display: none;
-}
-
-.back {
-	grid-column: span 12;
-	color: var(--navy-light);
-}
-
-.back:hover {
-	color: var(--red);
-}
-
-.back:active {
-	color: var(--white);
-}
-
+/* takki fyrir sidu */
 .id-trigger {
 	background-color: var(--white);
 	border: none;
 	color: var(--navy);
 	text-align: left;
-}
-
-.id-trigger:hover {
-	color: var(--red);
-	text-decoration: underline;
-	cursor: pointer;
-}
-
-.id-trigger:active {
-	color: var(--navy-light);
 }
 
 .loading {
@@ -205,13 +151,36 @@ body {
 	justify-self: center;
 }
 
+/* span 12 grid */
+p,
+li,
+.back,
+.results {
+	grid-column: span 12;
+	list-style: none;
+}
+
 .span12 {
 	grid-column: span 12;
 	gap: var(--spacing);
 }
 
-img {
-	width: 100%;
-	justify-self: center;
-	border-radius: 1em;
+/* Virkni */
+.back:active,
+.search-button:active,
+.id-trigger:active {
+	color: var(--navy-light);
+}
+
+.id-trigger:hover,
+.search-button:hover,
+.back:hover,
+.heading:hover {
+	color: var(--red);
+	cursor: pointer;
+}
+
+textarea:focus,
+input:focus {
+	outline: none;
 }

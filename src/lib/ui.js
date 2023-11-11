@@ -152,11 +152,11 @@ export function renderFrontpage(
 	searchHandler,
 	query = undefined
 ) {
-	const heading = el('a', { class: 'heading nafn' }, el(
+	const heading = el(
 		'h1',
 		{ class: 'heading nafn', 'data-foo': 'bar' },
 		'🚀 Geimskotaleitin'
-	));
+	);
 	heading.addEventListener('click', homepage)
 	const searchForm = renderSearchForm(searchHandler, query);
 	const container = el('main', { class: 'grid-container' }, heading, searchForm);
@@ -190,11 +190,11 @@ function buildDetailList(mainElement, result) {
  */
 export async function renderDetails(parentElement, id) {
 	empty(parentElement);
-	const heading = el('a', { class: 'heading nafn' }, el(
+	const heading = el(
 		'h1',
 		{ class: 'heading nafn', 'data-foo': 'bar' },
 		'🚀 Geimskotaleitin'
-	));
+	);
 	heading.addEventListener('click', homepage)
 	const backElement = el(
 		'div',
