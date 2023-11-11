@@ -8,8 +8,8 @@
 		"lint": "eslint ./**/*.js",
 		"prettier": "prettier --write .",
 		"copy:html": "cpy ./*.html ./build/",
-		"copy:js": "cpy ./src/*.js ./build/src/",
-		"copy:jslib": "cpy ./src/lib/*.js ./build/src/lib/",
+		"copy:js": "cpy ./src/*.js ./build/",
+		"copy:jslib": "cpy ./src/lib/*.js ./build/",
 		"copy:css": "cpy ./*.css ./build/",
 		"build": "concurrently npm:copy:*"
 	},
