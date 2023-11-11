@@ -203,9 +203,8 @@ export async function renderDetails(parentElement, id) {
 	empty(parentElement);
 	const heading = el(
 		'h1',
-		{ class: 'heading nafn', 'data-foo': 'bar' },
-		el('a', { class: 'heading nafn', href: '/' }, '🚀 Geimskotaleitin')
-	);
+		{ class: 'heading nafn', 'data-foo': 'bar' }, '🚀 Geimskotaleitin')
+		;
 	const backElement = el(
 		'div',
 		{ class: 'back' },
