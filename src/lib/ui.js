@@ -22,9 +22,7 @@ export function renderSearchForm(searchHandler, query = undefined) {
 		el('input', { value: query ?? '', name: 'query' }),
 		el('button', { class: 'search-button' }, 'Leita')
 	);
-
 	form.addEventListener('submit', searchHandler);
-
 	return form;
 }
 
@@ -35,19 +33,19 @@ export function renderSearchForm(searchHandler, query = undefined) {
  */
 function setLoading(parentElement, searchForm = undefined) {
 	let loadingElement = parentElement.querySelector('.loading');
-	parentElement.classList.add('loading')
-
+	let body = parentElement.parentElement
+	if (!body) {
+		body = parentElement;
+	}
+	body.classList.add('loading')
 	if (!loadingElement) {
 		loadingElement = el('div', { class: 'loading' }, 'Sæki gögn...');
 		parentElement.appendChild(loadingElement);
 	}
-
 	if (!searchForm) {
 		return;
 	}
-
 	const button = searchForm.querySelector('button');
-
 	if (button) {
 		button.setAttribute('disabled', 'disabled');
 	}
@@ -60,18 +58,18 @@ function setLoading(parentElement, searchForm = undefined) {
  */
 function setNotLoading(parentElement, searchForm = undefined) {
 	const loadingElement = parentElement.querySelector('.loading');
-	parentElement.classList.remove('loading');
-
+	let body = parentElement.parentElement
+	if (!body) {
+		body = parentElement;
+	}
+	body.classList.remove('loading');
 	if (loadingElement) {
 		loadingElement.remove();
 	}
-
 	if (!searchForm) {
 		return;
 	}
-
 	const disabledButton = searchForm.querySelector('button[disabled]');
-
 	if (disabledButton) {
 		disabledButton.removeAttribute('disabled');
 	}
@@ -84,13 +82,11 @@ function setNotLoading(parentElement, searchForm = undefined) {
  */
 function createSearchResults(results, query) {
 	const list = el('ul', { class: 'results' });
-
 	if (!results) {
 		const noResultsElement = el('li', {}, `Villa við leit að ${query}`);
 		list.appendChild(noResultsElement);
 		return list;
 	}
-
 	if (results.length === 0) {
 		const noResultsElement = el(
 			'li',
@@ -100,7 +96,6 @@ function createSearchResults(results, query) {
 		list.appendChild(noResultsElement);
 		return list;
 	}
-
 	for (const result of results) {
 		const resultElement = el(
 			'li',
@@ -115,7 +110,6 @@ function createSearchResults(results, query) {
 		idSubmit.addEventListener('click', idSet);
 		list.appendChild(resultElement);
 	}
-
 	return list;
 }
 
@@ -127,27 +121,26 @@ function createSearchResults(results, query) {
  */
 export async function searchAndRender(parentElement, searchForm, query) {
 	const mainElement = parentElement.querySelector('main');
-
 	if (!mainElement) {
 		console.warn('fann ekki <main> element');
 		return;
 	}
-
 	// Fjarlægja fyrri niðurstöður
 	const resultsElement = mainElement.querySelector('.results');
 	if (resultsElement) {
 		resultsElement.remove();
 	}
-
 	setLoading(mainElement, searchForm);
 	const results = await searchLaunches(query);
 	setNotLoading(mainElement, searchForm);
-
 	const resultsEl = createSearchResults(results, query);
-
 	mainElement.appendChild(resultsEl);
 }
 
+function homepage() {
+	window.history.pushState({}, '', '/')
+	window.history.go()
+}
 /**
  * Sýna forsíðu, hugsanlega með leitarniðurstöðum.
  * @param {HTMLElement} parentElement Element sem á að innihalda forsíðu.
@@ -159,20 +152,18 @@ export function renderFrontpage(
 	searchHandler,
 	query = undefined
 ) {
-	const heading = el(
+	const heading = el('a', { class: 'heading nafn' }, el(
 		'h1',
 		{ class: 'heading nafn', 'data-foo': 'bar' },
 		'🚀 Geimskotaleitin'
-	);
+	));
+	heading.addEventListener('click', homepage)
 	const searchForm = renderSearchForm(searchHandler, query);
-
 	const container = el('main', { class: 'grid-container' }, heading, searchForm);
 	parentElement.appendChild(container);
-
 	if (!query) {
 		return;
 	}
-
 	searchAndRender(parentElement, searchForm, query);
 }
 
@@ -186,8 +177,6 @@ function buildDetailList(mainElement, result) {
 		el('li', { class: 'span12' }, el('h3', {}, `Staða: ${result.status.name}`), el('p', {}, result.status.description)),
 		el('li', { class: 'span12' }, el('h3', {}, `Geimferð: ${result.mission.name}`), el('p', {}, result.mission.description)),
 		el('li', { class: 'span12' }, el('figure', {}, el('img', { src: result.image }, ''))),
-
-
 	)
 	mainElement.appendChild(nafnid)
 	mainElement.appendChild(datalist)
@@ -201,10 +190,12 @@ function buildDetailList(mainElement, result) {
  */
 export async function renderDetails(parentElement, id) {
 	empty(parentElement);
-	const heading = el(
+	const heading = el('a', { class: 'heading nafn' }, el(
 		'h1',
-		{ class: 'heading nafn', 'data-foo': 'bar' }, '🚀 Geimskotaleitin')
-		;
+		{ class: 'heading nafn', 'data-foo': 'bar' },
+		'🚀 Geimskotaleitin'
+	));
+	heading.addEventListener('click', homepage)
 	const backElement = el(
 		'div',
 		{ class: 'back' },
@@ -225,7 +216,6 @@ export async function renderDetails(parentElement, id) {
 	setLoading(mainElement)
 	const result = await getLaunch(id);
 	setNotLoading(mainElement)
-
 	parentElement.querySelector('main')?.appendChild(backElement)
 	// Tómt og villu state, við gerum ekki greinarmun á þessu tvennu, ef við
 	// myndum vilja gera það þyrftum við að skilgreina stöðu fyrir niðurstöðu

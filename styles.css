@@ -67,8 +67,14 @@ select,
 button,
 a {
 	font-family: var(--font-family-basic);
+}
+
+select,
+button,
+a {
 	cursor: pointer;
 }
+
 
 p {
 	grid-column: span 12;
@@ -83,28 +89,9 @@ input[type='number'] {
 .search-button {
 	padding-inline: calc(var(--spacing) / 2);
 	border-radius: 0 1em 1em 0;
-	border: #0c1438 solid 1px;
-	background-color: #0c1438;
-	/* color: white; */
-	color: white;
-
-
-
-	/* #222b52 */
-
-
-	/* Create a conic gradient. */
-	/* Double percentages to avoid blur (#000 10%, #fff 10%, #fff 20%, ...). */
-	/* background: #CA4246;
-	background-color: #CA4246; */
-	/* background: conic-gradient(#6bbaff 50%, #f0264a 50%); */
-
-
-	/* Use the text as a mask for the background. */
-	/* This will show the gradient as a text color rather than element bg. */
-	/* -webkit-background-clip: text;
-	-webkit-text-fill-color: transparent; */
-
+	border: var(--navy) solid 1px;
+	background-color: var(--navy);
+	color: var(--white);
 }
 
 .search-button:hover {
@@ -118,7 +105,6 @@ input[type='number'] {
 
 h1 {
 	font-size: 2rem;
-	/* margin-block-end: var(--spacing); */
 }
 
 h2 {
@@ -141,7 +127,6 @@ main {
 	padding-inline: var(--spacing);
 	max-width: var(--max-width);
 	max-height: 100vh;
-	/* align-self: center; */
 }
 
 li {
@@ -154,15 +139,12 @@ li {
 	grid-template-columns: repeat(12, minmax(0, 1fr));
 	width: 100%;
 	align-self: center;
-
 }
 
-/* TODO nánari stílar */
 body {
 	font-family: 'Space Mono', monospace;
 	height: 100vh;
 	display: flex;
-	/* align-items: center; */
 }
 
 .nafn {
@@ -223,8 +205,6 @@ body {
 	justify-self: center;
 }
 
-
-
 .span12 {
 	grid-column: span 12;
 	gap: var(--spacing);
@@ -232,7 +212,6 @@ body {
 
 img {
 	width: 100%;
-	/* object-fit: cover; */
-	/* object-position: center; */
 	justify-self: center;
+	border-radius: 1em;
 }

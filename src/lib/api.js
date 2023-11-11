@@ -36,7 +36,6 @@ export async function searchLaunches(query) {
 	const url = new URL('launch', API_URL);
 	url.searchParams.set('search', query);
 	url.searchParams.set('mode', 'list');
-
 	let response;
 	try {
 		response = await fetch(url);
@@ -44,7 +43,6 @@ export async function searchLaunches(query) {
 		console.error('Villa kom upp við að sækja gögn');
 		return null;
 	}
-
 	if (!response.ok) {
 		console.error(
 			'Villa við að sækja gögn, ekki 200 staða',
@@ -53,7 +51,6 @@ export async function searchLaunches(query) {
 		);
 		return null;
 	}
-
 	let json;
 	try {
 		json = await response.json();
@@ -61,7 +58,6 @@ export async function searchLaunches(query) {
 		console.error('Villa við að vinna úr JSON');
 		return null;
 	}
-
 	return json.results;
 }
 
@@ -72,8 +68,6 @@ export async function searchLaunches(query) {
  */
 export async function getLaunch(id) {
 	const url = new URL(`launch/${id}`, API_URL);
-
-
 	let response;
 	try {
 		response = await fetch(url);
