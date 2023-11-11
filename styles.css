@@ -1,66 +1,238 @@
 /* Reset og border-box á allt */
 * {
-  margin: 0;
-  padding: 0;
+	margin: 0;
+	padding: 0;
 }
 
 html {
-  box-sizing: border-box;
+	box-sizing: border-box;
+	overflow-wrap: anywhere;
 }
 
 *,
 *:before,
 *:after {
-  box-sizing: inherit;
+	box-sizing: inherit;
 }
 
 :root {
-  --spacing: 1rem;
-  --max-width: 56rem;
+	--spacing: 1rem;
+	--max-width: 56rem;
 
-  --font-family: -system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	--font-family-fine: 'Strait', sans-serif;
+	--font-family-basic: 'Space Mono', monospace;
+
+	--navy: #0c1438;
+	--navy-light: #222b52;
+	--red: #ca0b4a;
+	--white: #fff;
 }
 
 img {
-  max-width: 100%;
+	max-width: 100%;
 }
 
 html {
-  font-family: var(--font-family);
+	font-family: var(--font-family-fine);
+	color: #0c1438;
 }
 
 input,
 select,
 button {
-  font-size: inherit;
+	font-size: inherit;
 }
 
-input[type='number'] {
-  padding-inline-start: calc(var(--spacing) / 2);
+input {
+	/* grid-column-start: 2; */
+	grid-column-end: span 9;
+	/* padding: 0 var(--spacing) 0 0; */
+	border-radius: 1em 0 0 1em;
+	border: #0c1438 solid 1px;
+	padding: 0 0 0 1em;
+	color: #222b52
+}
+
+textarea:focus,
+input:focus {
+	outline: none;
 }
 
 button {
-  padding-inline: calc(var(--spacing) / 2);
+	grid-column: span 3;
+}
+
+input,
+select,
+button,
+a {
+	font-family: var(--font-family-basic);
+	cursor: pointer;
+}
+
+p {
+	grid-column: span 12;
+}
+
+
+input[type='number'] {
+	padding-inline-start: calc(var(--spacing) / 2);
+	/* grid-column: span 9; */
+}
+
+.search-button {
+	padding-inline: calc(var(--spacing) / 2);
+	border-radius: 0 1em 1em 0;
+	border: #0c1438 solid 1px;
+	background-color: #0c1438;
+	/* color: white; */
+	color: white;
+
+
+
+	/* #222b52 */
+
+
+	/* Create a conic gradient. */
+	/* Double percentages to avoid blur (#000 10%, #fff 10%, #fff 20%, ...). */
+	/* background: #CA4246;
+	background-color: #CA4246; */
+	/* background: conic-gradient(#6bbaff 50%, #f0264a 50%); */
+
+
+	/* Use the text as a mask for the background. */
+	/* This will show the gradient as a text color rather than element bg. */
+	/* -webkit-background-clip: text;
+	-webkit-text-fill-color: transparent; */
+
+}
+
+.search-button:hover {
+	color: var(--red);
+	cursor: pointer;
+}
+
+.search-button:active {
+	color: var(--navy-light);
 }
 
 h1 {
-  font-size: 2rem;
-  margin-block-end: var(--spacing);
+	font-size: 2rem;
+	/* margin-block-end: var(--spacing); */
 }
 
 h2 {
-  font-size: 1.5rem;
+	font-size: 1.5rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: 'Strait', sans-serif;
 }
 
 main {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing);
+	flex-direction: column;
+	gap: var(--spacing);
+	margin: 1rem auto;
+	padding-inline: var(--spacing);
+	max-width: var(--max-width);
+	max-height: 100vh;
+	/* align-self: center; */
+}
 
-  margin: var(--spacing) auto;
-  padding-inline: var(--spacing);
-  max-width: var(--max-width);
+li {
+	list-style: none;
+	grid-column: span 12;
+}
+
+.grid-container {
+	display: grid;
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+	width: 100%;
+	align-self: center;
+
 }
 
 /* TODO nánari stílar */
+body {
+	font-family: 'Space Mono', monospace;
+	height: 100vh;
+	display: flex;
+	/* align-items: center; */
+}
+
+.nafn {
+	grid-column: span 12;
+	justify-self: center;
+	align-self: center;
+	font-family: var(--font-family-fine);
+}
+
+.results {
+	grid-column: span 12;
+}
+
+.heading {
+	text-align: center;
+	color: #0c1438;
+	text-decoration: none;
+}
+
+.id {
+	display: none;
+}
+
+.back {
+	grid-column: span 12;
+	color: var(--navy-light);
+}
+
+.back:hover {
+	color: var(--red);
+}
+
+.back:active {
+	color: var(--white);
+}
+
+.id-trigger {
+	background-color: var(--white);
+	border: none;
+	color: var(--navy);
+	text-align: left;
+}
+
+.id-trigger:hover {
+	color: var(--red);
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.id-trigger:active {
+	color: var(--navy-light);
+}
+
+.loading {
+	cursor: wait !important;
+	color: var(--navy-light);
+	grid-column: span 12;
+	justify-self: center;
+}
+
+
+
+.span12 {
+	grid-column: span 12;
+	gap: var(--spacing);
+}
+
+img {
+	width: 100%;
+	/* object-fit: cover; */
+	/* object-position: center; */
+	justify-self: center;
+}

@@ -1,22 +1,33 @@
 {
-  "name": "vef1-2023-v9",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "dev": "browser-sync start --server --files ./src/ styles.css index.html",
-    "lint": "eslint ./**/*.js",
-    "prettier": "prettier --write ."
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "browser-sync": "^2.29.3",
-    "eslint": "^8.52.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-import": "^2.29.0",
-    "prettier": "^3.0.3"
-  }
+	"name": "vef1-2023-v9",
+	"version": "1.0.0",
+	"description": "",
+	"main": "./src/index.js",
+	"scripts": {
+		"dev": "browser-sync start --server --files ./src/ styles.css index.html",
+		"lint": "eslint ./**/*.js",
+		"prettier": "prettier --write .",
+		"copy:html": "cpy ./*.html ./build/",
+		"copy:js": "cpy ./src/*.js ./build/src/",
+		"copy:jslib": "cpy ./src/lib/*.js ./build/src/lib/",
+		"copy:css": "cpy ./*.css ./build/",
+		"build": "concurrently npm:copy:*"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"browser-sync": "^2.23.7",
+		"eslint": "^8.52.0",
+		"eslint-config-airbnb-base": "^15.0.0",
+		"eslint-config-prettier": "^9.0.0",
+		"eslint-plugin-import": "^2.29.0",
+		"prettier": "^3.0.3",
+		"concurrently": "^8.2.1",
+		"cpy-cli": "^5.0.0"
+	},
+	"dependencies": {
+		"build": "^0.1.4",
+		"copy": "^0.3.2"
+	}
 }
