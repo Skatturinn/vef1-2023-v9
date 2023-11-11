@@ -208,7 +208,7 @@ export async function renderDetails(parentElement, id) {
 	const backElement = el(
 		'div',
 		{ class: 'back' },
-		el('a', { href: '/', class: 'back' }, 'Til baka')
+		el('a', { class: 'back' }, 'Til baka')
 	);
 	backElement.addEventListener('click', () => {
 		window.history.back();
