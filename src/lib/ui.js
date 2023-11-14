@@ -176,7 +176,7 @@ function buildDetailList(mainElement, result) {
 		el('p', { class: 'span12' }, `Gluggi lokast: ${result.window_end}`),),
 		el('li', { class: 'span12' }, el('h3', {}, `Staða: ${result.status.name}`), el('p', {}, result.status.description)),
 		el('li', { class: 'span12' }, el('h3', {}, `Geimferð: ${result.mission.name}`), el('p', {}, result.mission.description)),
-		el('li', { class: 'span12' }, el('figure', {}, el('img', { src: result.image }, ''))),
+		el('li', { class: 'span12' }, el('figure', {}, el('img', { src: result.image, alt: 'ljósmynd af geimskoti' }, ''))),
 	)
 	mainElement.appendChild(nafnid)
 	mainElement.appendChild(datalist)
