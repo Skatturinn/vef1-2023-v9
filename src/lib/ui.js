@@ -167,17 +167,29 @@ export function renderFrontpage(
 	searchAndRender(parentElement, searchForm, query);
 }
 
+function villucheck(stak) {
+	if (!stak) {
+		return 'vantar'
+	}
+	return stak
+}
+
 function buildDetailList(mainElement, result) {
 	/* TODO útfæra ef gögn */
+	let mm = el('li', { class: 'span12' }, el('h3', {}, 'Geimferð: Gekk ekki upp'), el('p', {},));
+	if (result.mission) {
+		mm = el('li', { class: 'span12' }, el('h3', {}, `Geimferð: ${result.mission.name}`), el('p', {}, result.mission.description));
+	}
+	console.log(result)
 	const nafnid = el('h2', { class: 'nafn' }, result?.name)
 	const datalist = el('ol', { class: 'span12 grid-container' }, el(
 		'li', { class: 'span12' },
-		el('p', { class: 'span12' }, `Gluggi opnast: ${result.window_start}`),
-		el('p', { class: 'span12' }, `Gluggi lokast: ${result.window_end}`),),
-		el('li', { class: 'span12' }, el('h3', {}, `Staða: ${result.status.name}`), el('p', {}, result.status.description)),
-		el('li', { class: 'span12' }, el('h3', {}, `Geimferð: ${result.mission.name}`), el('p', {}, result.mission.description)),
-		el('li', { class: 'span12' }, el('figure', {}, el('img', { src: result.image }, ''))),
+		el('p', { class: 'span12' }, `Gluggi opnast: ${villucheck(result.window_start)}`),
+		el('p', { class: 'span12' }, `Gluggi lokast: ${villucheck(result.window_end)}`),),
+		el('li', { class: 'span12' }, el('h3', {}, `Staða: ${villucheck(result.status.name)}`), el('p', {}, villucheck(result.status.description))),
+		el('li', { class: 'span12' }, el('figure', {}, el('img', { src: result.image, alt: '' }))),
 	)
+	datalist.appendChild(mm);
 	mainElement.appendChild(nafnid)
 	mainElement.appendChild(datalist)
 	return mainElement;
