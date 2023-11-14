@@ -176,7 +176,7 @@ function villucheck(stak) {
 
 function buildDetailList(mainElement, result) {
 	/* TODO útfæra ef gögn */
-	let mm = el('li', { class: 'span12' }, el('h3', {}, 'Geimferð: Gekk ekki upp'), el('p', {},));
+	let mm = el('li', { class: 'span12' }, el('h3', {}, ''), el('p', {},));
 	if (result.mission) {
 		mm = el('li', { class: 'span12' }, el('h3', {}, `Geimferð: ${result.mission.name}`), el('p', {}, result.mission.description));
 	}
