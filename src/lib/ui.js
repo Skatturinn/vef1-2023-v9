@@ -180,7 +180,6 @@ function buildDetailList(mainElement, result) {
 	if (result.mission) {
 		mm = el('li', { class: 'span12' }, el('h3', {}, `Geimferð: ${result.mission.name}`), el('p', {}, result.mission.description));
 	}
-	console.log(result)
 	const nafnid = el('h2', { class: 'nafn' }, result?.name)
 	const datalist = el('ol', { class: 'span12 grid-container' }, el(
 		'li', { class: 'span12' },
