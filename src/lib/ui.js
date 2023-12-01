@@ -210,11 +210,11 @@ export async function renderDetails(parentElement, id) {
 	const backElement = el(
 		'div',
 		{ class: 'back' },
-		el('a', { class: 'back' }, 'Til baka')
+		el('a', { class: 'back', href: '/'}, 'Til baka')
 	);
-	backElement.addEventListener('click', () => {
-		window.history.back();
-	});
+	//backElement.addEventListener('click', () => {
+	//	window.history.back();
+	//});
 	const container = el('main', { class: 'grid-container' }, heading);
 	// empty(parentElement);
 	parentElement.appendChild(container);
